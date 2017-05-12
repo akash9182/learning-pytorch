@@ -52,8 +52,11 @@ for epoch in range(num_epochs):
 		optimizer.zero_grad()
 		outputs = model(images)
 		loss = criterion(outputs, labels)
-		loss = backward()
+		loss.backward()
 		optimizer.step()
+
+		if(i+1) % 100 == 0:
+			print ('Epoch: [%d/%d], Step: [%d/%d], Loss: %.4f' % (epoch+1, num_epochs, i+1, len(train_dataset)//batch_size, loss.data[0]))
 
 
 # Test the model
